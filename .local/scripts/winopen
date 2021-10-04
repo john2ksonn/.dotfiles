@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# use $PWD if no argument was given
+[ -z "$1" ] && set $1 "$PWD"
+# convert the unix path to a windows path
+wslpath=$(wslpath -wa "$1")
+
+# actually open the file / folder via powershell and exit
+# redirect any errors to /dev/null
+powershell.exe -C "start '$wslpath'" > /dev/null 2>&1 && exit
+
+# if the above line failed exit with an error
+>&2 echo "Failed opening \"$1\""
+exit 1
+

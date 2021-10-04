@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#mpv.exe --ytdl-raw-options=sub-lang=en,write-auto-sub= --fs --quiet --sub-blur=20 --sub-scale=0.5 --sub-back-color=.2/.2/.2/.5 $1 > /dev/null &
+mpv_command="mpv.exe --ytdl-raw-options=sub-lang=en,write-auto-sub= --fs --quiet --sub-blur=20 --sub-scale=0.5 --sub-back-color=.2/.2/.2/.5"
+
+if [[ $1 == "https://rumble.com/v"* ]]; then
+	url=`curl -s $1 | grep -o "https://[^\"]*embed[^\"]*"`
+    `$mpv_command $url > /dev/null &`
+elif [[ $1 == "https://www.youtube.com/watch"* ]]; then
+    `$mpv_command $1 > /dev/null &`
+elif [[ `echo $1 | grep "https://odysee.com/[^@]"` ]]; then
+    `$mpv_command $1 > /dev/null &`
+else
+    brave $1 &
+fi
+
