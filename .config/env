@@ -7,7 +7,7 @@ export PATH=$PATH:"$HOME/.local/scripts"
 export EDITOR="nvim"
 export BROWSER="brave"
 
-if uname -r | grep Microsoft
+if uname -r | grep Microsoft > /dev/null
 then
     export READER="winopen"
 fi

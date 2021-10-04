@@ -32,7 +32,7 @@ alias \
 
 # Folders
 
-if uname -r | grep Microsoft
+if uname -r | grep Microsoft > /dev/null
 then
     alias \
         cdc="cd /mnt/c" \
