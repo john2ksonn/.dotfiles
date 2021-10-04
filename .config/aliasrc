@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# check if nvim is installed and set it as alias for vim
+command -v nvim > /dev/null && alias vim="nvim" vimdiff="nvim -d"
+
+alias \
+	tmux="tmux -f $HOME/.config/tmux/tmux.conf"
+
+alias \
+    cp="cp -i" # warn before ovewriting \
+    mv="mv -i" \
+    rm="rm -I" \
+    mkd="mkdir -pv" \
+    v="vim -o"
+
+alias less="less -R"
+
+alias \
+    ls="ls -hN --color=auto --group-directories-first" \
+    grep="grep --color=auto" \
+    diff="diff --color=auto" \
+    watch="watch -c SYSTEMD_COLORS=1" \
+    ccat="highlight --out-format=truecolor"
+
+alias \
+    g="git" \
+    e="$EDITOR" \
+    win="winopen" \
+    sl="ls" \
+    ll="ls -l" \
+    la="ls -A"
+
+# Folders
+
+if uname -r | grep Microsoft
+then
+    alias \
+        cdc="cd /mnt/c" \
+        cdrive="cd /mnt/c/Users/Johannes/GoogleDrive" \
+        cdoc="cd /mnt/c/Users/Johannes/Documents" \
+        cdnotes="cd /mnt/c/Users/Johannes/SyncNotes" \
+        cds="cd /mnt/c/Users/Johannes/GoogleDrive/KnowledgeBase/THU/Informatik/Semester5"
+fi
+

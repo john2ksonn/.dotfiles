@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+# Add '~/.local/bin' to $PATH
+export PATH=$PATH:"$HOME/.local/scripts"
+
+# Default programs:
+export EDITOR="nvim"
+export BROWSER="brave"
+
+if uname -r | grep Microsoft
+then
+    export READER="winopen"
+fi
+
+# Keep ~/ clean
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export ZDOTDIR="$HOME/.config/zsh"
+
