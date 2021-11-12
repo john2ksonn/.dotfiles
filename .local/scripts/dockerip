@@ -13,5 +13,5 @@ fi
 ip=`sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container || pkexec docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container`
 echo $ip
 notify-send "Copied ip address of $container to clipboard" "$ip"
-echo $ip | xclip -selection clipboard
+echo -n $ip | xclip -selection clipboard
 
