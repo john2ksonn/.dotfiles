@@ -1,0 +1,15 @@
+#!/bin/sh
+
+interfaces=`ip link | awk -F: '$0 !~ "lo|vir|wl|^[^0-9]"{print $2;getline}'`
+
+if  [ `echo $interfaces | wc -w` -gt 1 ]; then
+    interface=`echo $interfaces | tr "[:blank:]" "\n" | dmenu`
+else
+    interface=$interfaces
+fi
+
+ip=`ip a show $interface | grep "inet " | sed -E 's/inet (.*)\/.*/\1/g'`
+echo $ip
+notify-send "Copied ip address of $container to clipboard" "$ip"
+echo -n $ip | xclip -selection clipboard
+
