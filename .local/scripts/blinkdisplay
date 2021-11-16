@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#sudo sh -c "while true; do echo 400 > /sys/devices/pci0000:00/0000:00:02.0/drm/card4/card4-eDP-1/intel_backlight/brightness; sleep 0.5; echo 7000 > /sys/devices/pci0000:00/0000:00:02.0/drm/card4/card4-eDP-1/intel_backlight/brightness; sleep 0.5; done"
+
+# sudo bash -c "for i in {1..2}; do
+# 	echo 100 > /sys/devices/pci0000:00/0000:00:02.0/drm/card4/card4-eDP-1/intel_backlight/brightness;
+# 	sleep 0.2;
+# 	echo 7000 > /sys/devices/pci0000:00/0000:00:02.0/drm/card4/card4-eDP-1/intel_backlight/brightness;
+# 	sleep 0.2;
+# done"
+
+sudo bash -c 'for i in {1..2}; do
+        orig=`cat /sys/devices/pci0000:00/0000:00:02.0/drm/card4/card4-eDP-1/intel_backlight/actual_brightness`;
+        echo 100 > /sys/devices/pci0000:00/0000:00:02.0/drm/card4/card4-eDP-1/intel_backlight/brightness;
+        sleep 0.2;
+        echo $orig > /sys/devices/pci0000:00/0000:00:02.0/drm/card4/card4-eDP-1/intel_backlight/brightness;
+        sleep 0.2;
+done'
+
