@@ -10,6 +10,6 @@ fi
 
 ip=`ip a show $interface | grep "inet " | sed -E 's/inet (.*)\/.*/\1/g'`
 echo $ip
-notify-send "Copied ip address of $container to clipboard" "$ip"
+notify-send "Copied ip address of $interface to clipboard" "$ip"
 echo -n $ip | xclip -selection clipboard
 

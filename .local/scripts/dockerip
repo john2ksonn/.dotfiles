@@ -1,8 +1,7 @@
 #!/bin/sh
 
+terminator -e '
 containers=`sudo docker ps --format "{{.Names}}" || pkexec docker ps --format "{{.Names}}"`
-#containers=`sudo docker ps -q`
-#containers=`echo $containers | tr "[:blank:]" "\n"`
 
 if  [ `echo $containers | wc -w` -gt 1 ]; then
     container=`echo $containers | tr "[:blank:]" "\n" | dmenu`
@@ -10,8 +9,9 @@ else
     container=$containers
 fi
 
-ip=`sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container || pkexec docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container`
+ip=`sudo docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $container || pkexec docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $container`
 echo $ip
 notify-send "Copied ip address of $container to clipboard" "$ip"
 echo -n $ip | xclip -selection clipboard
+'
 
