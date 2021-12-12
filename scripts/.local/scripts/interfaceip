@@ -1,5 +1,12 @@
 #!/bin/sh
 
+sessiontype=`loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}'`
+
+if [ "$sessiontype" = 'wayland' ]; then
+	echo "Currently not supported in $sessiontype"
+	exit 1;
+fi
+
 interfaces=`ip link | awk -F: '$0 !~ "lo|vir|wl|^[^0-9]"{print $2;getline}'`
 
 if  [ `echo $interfaces | wc -w` -gt 1 ]; then

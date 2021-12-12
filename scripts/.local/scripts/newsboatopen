@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#mpv.exe --ytdl-raw-options=sub-lang=en,write-auto-sub= --fs --quiet --sub-blur=20 --sub-scale=0.5 --sub-back-color=.2/.2/.2/.5 $1 > /dev/null &
-mpv_command="mpv.exe --ytdl-raw-options=sub-lang=en,write-auto-sub= --fs --quiet --sub-blur=20 --sub-scale=0.5 --sub-back-color=.2/.2/.2/.5"
+mpv_command="mpv --ytdl-raw-options=sub-lang=en,write-auto-sub= --fs --quiet --sub-blur=20 --sub-scale=0.5 --sub-back-color=.2/.2/.2/.5"
 
 if [[ $1 == "https://rumble.com/v"* ]]; then
 	url=`curl -s $1 | grep -o "https://[^\"]*embed[^\"]*"`

@@ -1,5 +1,12 @@
 #!/bin/sh
 
+sessiontype=`loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}'`
+
+if [ "$sessiontype" = 'wayland' ]; then
+	echo "Not supported in $sessiontype"
+	exit 1;
+fi
+
 cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
 if [ -d "$cachedir" ]; then
 	cache=$cachedir/dmenu_run
