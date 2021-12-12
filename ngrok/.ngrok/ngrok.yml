@@ -1,0 +1,7 @@
+tunnels:
+  ncatlistener:
+    addr: 7777
+    proto: tcp
+  webserver:
+    addr: 8000
+    proto: http
