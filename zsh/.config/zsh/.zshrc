@@ -1,6 +1,14 @@
 autoload -U colors && colors
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
 #PS1="%B%n%F{137}@%f%m %F{148}%3d%f>%b "
-PS1="%B%n%F{137}@%f%m %F{148}%3~%f/%(?.. %F{%?}[%?]%f%F{3}🗲%f )>%b "
+PROMPT="%B%n%F{137}@%f%m %F{148}%3~%f/%(?.. %F{%?}[%?]%f%F{3}🗲%f )>%b "
+RPROMPT='%F{cyan}${vcs_info_msg_0_}%f %T'
+zstyle ':vcs_info:git:*' formats '%b'
+
 export KEYTIMEOUT=1
 
 export PATH=$HOME/.local/bin:$PATH
@@ -8,12 +16,9 @@ export PATH=$HOME/.local/bin:$PATH
 # check if aliasrc exists and source it
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
-export DISPLAY=localhost:0.0
-
-
 # source the zsh-syntax-highlighting plugin
-#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 bindkey -s "^f" 'cd "$(dirname "$(fzf)")"\n'
 bindkey -s "^p" 'winopen "$(find -type f | grep ".pdf" | fzf)"\n'
@@ -40,7 +45,9 @@ compinit
 
 # Share between shell
 setopt inc_append_history
+setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
 setopt share_history
+setopt histignorespace                                          # Don't save commands that start with space
 
 # enable comments in interactive prompt
 setopt interactivecomments
