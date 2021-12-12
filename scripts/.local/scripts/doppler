@@ -1,0 +1,6 @@
+#!/bin/sh
+
+notify-send "'☔ Loading doppler radar...'" "'Please wait a moment...'" &
+#echo "☔ Loading doppler radar...\nPlease wait a moment..."
+
+mpv --no-terminal --loop-file=inf "https://www.dwd.de/DWD/wetter/radar/radfilm_baw_akt.gif" &>/dev/null & disown
