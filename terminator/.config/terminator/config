@@ -1,0 +1,23 @@
+[global_config]
+  inactive_color_offset = 0.9
+[keybindings]
+[profiles]
+  [[default]]
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+  [[opaqe]]
+    cursor_color = "#aaaaaa"
+  [[red]]
+    background_color = "#a40000"
+    cursor_color = "#aaaaaa"
+    foreground_color = "#2e3436"
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]
