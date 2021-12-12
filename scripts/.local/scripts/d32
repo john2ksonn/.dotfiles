@@ -1,0 +1,8 @@
+#!/bin/sh
+
+msg=$@
+pipe=`mktemp`
+echo "$msg" | base32 -d | tee $pipe | xclip -selection clip
+notify-send -t 120000 -u low "base32 dec: $@" "`cat $pipe`"
+cat $pipe
+

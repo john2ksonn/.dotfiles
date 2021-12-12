@@ -1,0 +1,4 @@
+#!/bin/sh
+
+terminator -e "less $HOME/.cache/flags.txt"
+

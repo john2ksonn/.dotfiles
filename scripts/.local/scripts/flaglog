@@ -1,0 +1,9 @@
+#!/bin/sh
+
+
+#echo "# $@" >> "$HOME/.cache/flags.txt"
+#xclip -selection clip -o >> "$HOME/.cache/flags.txt"
+
+echo "$@:`xclip -selection clip -o`" >> "$HOME/.cache/flags.txt"
+echo >> "$HOME/.cache/flags.txt"
+

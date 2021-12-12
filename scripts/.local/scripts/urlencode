@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ -p /dev/stdin ]; then
+	input=`cat /dev/stdin`
+else
+	input="$@"
+fi
+
+result=$(echo "
+import urllib.parse
+
+print(urllib.parse.quote('$input'))" | python3)
+
+echo $result | xclip -selection clip
+notify-send -t 120000 "urlencode $input" "$result"
+echo $result
+

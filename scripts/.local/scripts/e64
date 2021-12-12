@@ -1,0 +1,8 @@
+#!/bin/sh
+
+msg=$@
+pipe=`mktemp`
+echo "$msg" | base64 | tee $pipe | xclip -selection clip
+notify-send -t 120000 -u low "base64 enc: $@" "`cat $pipe`"
+cat $pipe
+
