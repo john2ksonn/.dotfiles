@@ -1,12 +1,5 @@
 #!/bin/sh
 
-sessiontype=`loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}'`
-
-if [ "$sessiontype" = 'wayland' ]; then
-	echo "Currently not supported in $sessiontype"
-	exit 1;
-fi
-
 terminator -e '
 containers=`sudo docker ps --format "{{.Names}}" || pkexec docker ps --format "{{.Names}}"`
 

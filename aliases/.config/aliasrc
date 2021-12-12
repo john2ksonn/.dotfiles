@@ -39,3 +39,9 @@ then
         cds="cd /mnt/c/Users/Johannes/GoogleDrive/KnowledgeBase/THU/Informatik/Semester5"
 fi
 
+sessiontype=`loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}'`
+
+if [ "$sessiontype" = 'wayland' ]; then
+	alias dmenu="wofi --show=dmenu"
+fi
+
