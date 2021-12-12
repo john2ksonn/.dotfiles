@@ -1,6 +1,6 @@
 autoload -U colors && colors
-#PS1="%B%n%{$fg[green]%}@%{$fg[white]%}Debian %{$fg[green]%}%3d%{$fg[white]%}>%{$reset_color%}%b "
-PS1="%B%n%F{137}@%fDebian %F{148}%3d%f>%b "
+#PS1="%B%n%F{137}@%f%m %F{148}%3d%f>%b "
+PS1="%B%n%F{137}@%f%m %F{148}%3~%f/%(?.. %F{%?}[%?]%f%F{3}🗲%f )>%b "
 export KEYTIMEOUT=1
 
 export PATH=$HOME/.local/bin:$PATH
@@ -12,30 +12,31 @@ export DISPLAY=localhost:0.0
 
 
 # source the zsh-syntax-highlighting plugin
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 bindkey -s "^f" 'cd "$(dirname "$(fzf)")"\n'
 bindkey -s "^p" 'winopen "$(find -type f | grep ".pdf" | fzf)"\n'
 
-### DONT EDIT THIS PART ###
-# The following lines were added by compinstall
-
 zstyle ':completion:*' completer _complete _ignored _correct _approximate
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]} m:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=* l:|=*' 'r:|[._-]=* r:|=*'
-zstyle :compinstall filename '/home/johnsonn/.zshrc'
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+# Speed up completions
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 HISTFILE=~/.local/.cache/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt autocd
 unsetopt beep
 bindkey -v
-# End of lines configured by zsh-newuser-install
-### NOW YOU CAN EDIT AGAIN ###
+
+autoload -Uz compinit
+compinit
 
 # Share between shell
 setopt inc_append_history
