@@ -1,0 +1,18 @@
+gui.column.format: 
+	"No.", "%m",
+	"Time", "%t",
+	"Source", "%s",
+	"Source Port", "%uS",
+	"Destination", "%d",
+	"Destination Port", "%uD",
+	"Host", "%Cus:http.host:0:R",
+	"Protocol", "%p",
+	"Length", "%L",
+	"Server Name", "%Cus:tls.handshake.extensions_server_name:0:R",
+	"Request Method", "%Cus:http.request.method:0:R",
+	"Message type", "%Cus:dhcp.type:0:R",
+	"Name", "%Cus:nbns.name:0:R",
+	"CNameString", "%Cus:kerberos.CNameString:0:R",
+	"Username", "%Cus:smtp.auth.username:0:R",
+	"Password", "%Cus:smtp.auth.password:0:R"
+gui.qt.font_name: Liberation Mono,11,-1,5,50,0,0,0,0,0
