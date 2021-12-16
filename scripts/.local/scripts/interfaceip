@@ -3,7 +3,7 @@
 interfaces=`ip link | awk -F: '$0 !~ "lo|vir|wl|^[^0-9]"{print $2;getline}'`
 
 if  [ `echo $interfaces | wc -w` -gt 1 ]; then
-    interface=`echo $interfaces | tr "[:blank:]" "\n" | dmenu`
+    interface=`echo $interfaces | tr "[:blank:]" "\n" | wofi -d`
 else
     interface=$interfaces
 fi
