@@ -2,7 +2,10 @@ source $HOME/.config/zsh/prompt.zsh
 
 export KEYTIMEOUT=1
 
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/scripts
+
+export EDITOR=nvim
 
 # check if aliasrc exists and source it
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
@@ -12,7 +15,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 bindkey -s "^f" 'cd "$(dirname "$(fzf)")"\n'
-bindkey -s "^p" 'winopen "$(find -type f | grep ".pdf" | fzf)"\n'
+bindkey -s "^p" 'xdg-open "$(find -type f | grep ".pdf" | fzf)"\n'
 
 zstyle ':completion:*' completer _complete _ignored _correct _approximate
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]} m:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=* l:|=*' 'r:|[._-]=* r:|=*'
