@@ -10,6 +10,6 @@ elif [[ $1 == "https://www.youtube.com/watch"* ]]; then
 elif [[ `echo $1 | grep "https://odysee.com/[^@]"` ]]; then
     `$mpv_command $1 > /dev/null &`
 else
-    brave $1 &
+    brave $1 >/dev/null 2>&1 &
 fi
 

@@ -36,35 +36,35 @@ bind-key l open-in-browser article
 bind-key i toggle-show-read-feeds
 bind-key s toggle-show-read-feeds
 
-color background color246 color235
+#color background color246 default
 color listnormal color246 default dim
 color listfocus color223 default bold underline
 #color listnormal_unread color142 default bold
 #color listfocus_unread color142 default bold underline
 color listnormal_unread color214 default bold
 color listfocus_unread color214 default bold underline
-color article color223 color235
+color article color223 default
 color info color223 color237 underline
 
 #browser brave
 browser newsboatopen
 
-#highlight all ".*===.*===>" color235 color109 bold
+#highlight all ".*===.*===>" default color109 bold
 highlight all ".*===.*===>" color167 blue bold
-#highlight all ".*---.*--->" color109 color235 bold
+#highlight all ".*---.*--->" color109 default bold
 #highlight all ".*---.*--->" color167 default bold
-highlight all ".*---.*--->" color235 color109 bold
-#highlight feedlist "\\(0/[0-9]+\\)" color235 default invis
+highlight all ".*---.*--->" default color109 bold
+#highlight feedlist "\\(0/[0-9]+\\)" default default invis
 highlight all "This Week @NASA" yellow default bold
-highlight-article "title =~ \"Prophecy Update\"" red color235 bold
-highlight articlelist "\b(hack|Hack|HACK)\b" red color235 bold
-highlight articlelist "\b(Live|LIVE)\b" red color235 bold
-highlight articlelist "EXCLUSIVE" red color235 bold
-highlight articlelist "(Linux|LINUX|linux)" yellow color235 bold
-highlight article "(^Feed:|^Title:|^Author:).*" color109 color235 bold
-highlight article "https?://[^ ]+" color142 color235
-highlight article "\\[[0-9][0-9]*\\]" color175 color235 bold
-highlight article "\\[image\\ [0-9]+\\]" green color235 bold
-highlight article ":.*\\(link\\)$" cyan color235
-highlight article ":.*\\(image\\)$" blue color235
+highlight-article "title =~ \"Prophecy Update\"" red default bold
+highlight articlelist "\b(hack|Hack|HACK)\b" red default bold
+highlight articlelist "\b(Live|LIVE)\b" red default bold
+highlight articlelist "EXCLUSIVE" red default bold
+highlight articlelist "(Linux|LINUX|linux)" yellow default bold
+highlight article "(^Feed:|^Title:|^Author:).*" color109 default bold
+highlight article "https?://[^ ]+" color142 default
+highlight article "\\[[0-9][0-9]*\\]" color175 default bold
+highlight article "\\[image\\ [0-9]+\\]" green default bold
+highlight article ":.*\\(link\\)$" cyan default
+highlight article ":.*\\(image\\)$" blue default
 
