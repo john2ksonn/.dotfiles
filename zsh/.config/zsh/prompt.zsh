@@ -8,5 +8,6 @@ PROMPT="%B%n%F{137}@%f%m %F{148}%3~%f/%(?.. %F{%?}[%?]%f%F{3}🗲%f )>%b "
 
 setopt prompt_subst
 . $HOME/.config/zsh/git-prompt.sh
-export RPROMPT=$'%F{199}$(__git_ps1 "%s")%f %T'
+#RPROMPT=$'%F{199}$(__git_ps1 "%s")%f %T'
+export RPROMPT=$'%F{199}$(__git_ps1 "%s")%f %F{199}%T%f'
 

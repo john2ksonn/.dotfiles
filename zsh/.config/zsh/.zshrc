@@ -15,7 +15,9 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 bindkey -s "^f" 'cd "$(dirname "$(fzf)")"\n'
-bindkey -s "^p" 'xdg-open "$(find -type f | grep ".pdf" | fzf)"\n'
+#bindkey -s "^p" 'xdg-open "$(find -type f -filename "*.pdf" | grep ".pdf" | fzf)"\n'
+#bindkey -s "^p" "xdg-open \"\$(find -type f -filename '*.pdf' | sort | fzf)\"\n"
+bindkey -s "^p" "xdg-open \"\$(find -type f -name '*.pdf' | sort | fzf)\"\n"
 
 zstyle ':completion:*' completer _complete _ignored _correct _approximate
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]} m:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=* l:|=*' 'r:|[._-]=* r:|=*'
