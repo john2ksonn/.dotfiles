@@ -5,10 +5,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+
 Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -48,6 +49,7 @@ let g:gruvbox_invert_selection='0'
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#mode = 'citeproc'
 let g:pandoc#biblio#bibs = ["/home/joso/global.bib"]
+let g:pandoc#modules#disabled = ["folding"]
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -92,24 +94,27 @@ augroup END
     map <C-l> <C-w>l
 
 "| **Jump to next `=`:** `<Space><Space>`
-"inoremap <Space><Space> <Esc>/<++><Enter>"_c4l
+inoremap <Space><Space> <Esc>/<++><Enter>"_c4l
 inoremap ;e "{}"<Esc>hi
 " autocmd FileType markdown inoremap * **<Esc>i
  autocmd FileType markdown inoremap ** ****<Esc>hi
 " autocmd FileType markdown inoremap $ $$<Esc>i
 " autocmd FileType markdown inoremap $$<Return> $$<Return><Return>$$<Esc>kA
 
-"| # Snippets
+let mapleader = " " " map leader to space
+" decode bas64 word under cursor
+nmap <Leader>b :!echo <C-R><C-W> \| base64 -d<CR>
+" recursively grep for word under cursor
+nmap <Leader>g :tabnew\|read !grep -Hnr '<C-R><C-W>'<CR>
 
-" shebang section
-"| ## Shebangs
-"| **Insert shebang:** `;s`
-"| * **sh:** `#!/bin/sh`
-autocmd FileType sh inoremap ;s <Esc>ggO#!/bin/sh<Return><Return>
-"| * **bash:** `#!/bin/bash`
-autocmd FileType bash inoremap ;s <Esc>ggO#!/bin/bash<Return><Return>
-"| * **python:** `#!/usr/bin/python3`
-autocmd FileType python inoremap ;s <Esc>ggO#!/usr/bin/python3<Return><Return>
+" Shortcuts for grep results:
+" goto file and line of current grep result line
+nmap <Leader>t 0"ayt:f:l"byt::tabnew <C-R>a<CR>:<C-R>b<CR>
+" select word under cursor from grep result line
+"nmap <Leader>w "wyiw0"ayt:f:l"byt::tabnew <C-R>a<CR>:<C-R>b<CR>/<C-R>w<CR>zz
+nmap <Leader>w "wyiw0"ayt:f:l"byt::tabnew <C-R>a<CR>:<C-R>b<CR>/<C-R>w<CR>:noh<CR>viwzz
+
+"| # Snippets
 
 "| ## Python-Snippets
 "| * **for each loop:** `;fori`
