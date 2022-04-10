@@ -1,15 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 
-containers=`sudo docker ps --format "{{.Names}}" || pkexec docker ps --format "{{.Names}}"`
+#sudo ls / &> /dev/null || (pkexec dockerip; exit)
 
-if  [ `echo $containers | wc -w` -gt 1 ]; then
-    container=`echo $containers | tr "[:blank:]" "\n" | wofi -d`
-else
-    container=$containers
-fi
 
-ip=`sudo docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $container || pkexec docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $container`
-echo $ip
-notify-send "Copied ip address of $container to clipboard" "$ip"
-echo -n $ip | xclip -selection clipboard
+function dockerip_func {
+    containers=`sudo docker ps --format "{{.Names}}" || pkexec docker ps --format "{{.Names}}"`
+
+    if  [ `echo $containers | wc -w` -gt 1 ]; then
+        container=`echo $containers | tr "[:blank:]" "\n" | rofi -dmenu`
+    else
+        container=$containers
+    fi
+
+    ip=`sudo docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $container || pkexec docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $container`
+    echo $ip
+    notify-send "Copied ip address of $container to clipboard" "$ip"
+    echo -n $ip | xclip -selection clipboard
+}
+
+dockerip_func
 
