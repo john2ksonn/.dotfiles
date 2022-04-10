@@ -1,5 +1,7 @@
 [global_config]
   inactive_color_offset = 0.9
+  title_font = Sans 21
+  case_sensitive = False
 [keybindings]
   go_up = <Alt>k
   go_down = <Alt>j
@@ -17,6 +19,18 @@
     background_color = "#a40000"
     cursor_color = "#aaaaaa"
     foreground_color = "#2e3436"
+  [[BigFontOpaqe]]
+    cursor_color = "#aaaaaa"
+    font = Hack 16
+    use_system_font = False
+  [[gray opaqe]]
+    background_darkness = 0.9
+    cursor_color = "#aaaaaa"
+    use_theme_colors = True
+  [[white opaqe]]
+    background_color = "#ffffff"
+    cursor_color = "#aaaaaa"
+    foreground_color = "#000000"
 [layouts]
   [[default]]
     [[[window0]]]
