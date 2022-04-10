@@ -1,15 +1,30 @@
 #!/bin/bash
 
-mpv_command="mpv --ytdl-raw-options=sub-lang=en,write-auto-sub= --fs --quiet --sub-blur=20 --sub-scale=0.5 --sub-back-color=.2/.2/.2/.5"
+#mpv_command="mpv --ytdl-raw-options=sub-lang=en,write-auto-sub= --fs --quiet --sub-blur=20 --sub-scale=0.5 --sub-back-color=.2/.2/.2/.5"
+mpv_command="setsid -f mpv --ytdl-raw-options=sub-lang=en,write-auto-sub= --quiet --sub-blur=20 --sub-scale=0.5 --sub-back-color=.2/.2/.2/.5"
 
-if [[ $1 == "https://rumble.com/v"* ]]; then
-	url=`curl -s $1 | grep -o "https://[^\"]*embed[^\"]*"`
-    `$mpv_command $url > /dev/null &`
-elif [[ $1 == "https://www.youtube.com/watch"* ]]; then
-    `$mpv_command $1 > /dev/null &`
-elif [[ `echo $1 | grep "https://odysee.com/[^@]"` ]]; then
-    `$mpv_command $1 > /dev/null &`
-else
-    brave $1 >/dev/null 2>&1 &
-fi
+[ -z "$1" ] && { "$BROWSER"; exit; }
+
+case "$1" in
+    *mkv|*webm|*mp4|*youtube.com/watch*|*youtube.com/playlist*|*youtu.be*|*hooktube.com*|*bitchute.com*|*videos.lukesmith.xyz*|*odysee.com*)
+        playerctl pause
+        setsid -f `$mpv_command` -quiet "$1" >/dev/null 2>&1 ;;
+    *rumble.com/v*)
+        playerctl pause
+        url=`curl -s $1 | grep -o "https://[^\"]*embed[^\"]*"`
+        setsid -f `$mpv_command` -quiet "$1" >/dev/null 2>&1 ;;
+    *soundcloud.com*|*mp3|*flac|*opus)
+        playerctl pause
+        terminator -e "$mpv_command $1" > /dev/null & ;;
+    *twitter.com*)
+        url=`echo "$1" | sed 's/twitter.com/nitter.net/g'`
+        setsid -f "$BROWSER" --profile-directory="Profile 3" $url >/dev/null 2>&1 & ;;
+    *png|*jpg|*jpe|*jpeg|*gif)
+		curl -sL "$1" > "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")" && sxiv -a "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 & ;;
+    *portswigger.net/daily-swig/*)
+        curl $1 | sed -n '/<div class="post/,/<\/div>/p' | w3m -T text/html ;;
+    *)
+        #[ -f "$1" ] && setsid -f "$TERMINAL" -e "$EDITOR" "$1" >/dev/null 2>&1 || setsid -f "$BROWSER" "$1" >/dev/null 2>&1
+        [ -f "$1" ] && setsid -f "$TERMINAL" -e "$EDITOR" "$1" >/dev/null 2>&1 || setsid -f "$BROWSER" --profile-directory="Profile 3" $1 >/dev/null 2>&1 &
+esac
 
