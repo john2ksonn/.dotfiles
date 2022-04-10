@@ -5,8 +5,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+Plug 'ThePrimeagen/vim-be-good'
+
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 
 Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
@@ -17,6 +19,13 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'cdelledonne/vim-cmake'
 Plug 'scrooloose/nerdcommenter' "TODO: configure
+Plug 'fatih/vim-go'
+
+Plug 'rhysd/vim-clang-format'
+
+Plug 'sirtaj/vim-openscad'
+
+"Plug 'sudar/vim-arduino-syntax'
 call plug#end()
 
 filetype plugin on
@@ -42,9 +51,13 @@ set colorcolumn=80
 set termguicolors
 set background=dark
 "let g:gruvbox_background = 'soft'
+
 colorscheme gruvbox
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection='0'
+
+" set transparent bg
+highlight Normal guibg=none
 
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#mode = 'citeproc'
@@ -105,14 +118,19 @@ let mapleader = " " " map leader to space
 " decode bas64 word under cursor
 nmap <Leader>b :!echo <C-R><C-W> \| base64 -d<CR>
 " recursively grep for word under cursor
-nmap <Leader>g :tabnew\|read !grep -Hnr '<C-R><C-W>'<CR>
+nmap <Leader>g :e\|read !grep -Hnr '<C-R><C-W>'<CR>
+nmap <Leader>G :tabnew\|read !grep -Hnr '<C-R><C-W>'<CR>
 
 " Shortcuts for grep results:
+" not necessary:
+" * to jump to file -> use gf
+" * to jump to file and linenumber -> use gF
 " goto file and line of current grep result line
-nmap <Leader>t 0"ayt:f:l"byt::tabnew <C-R>a<CR>:<C-R>b<CR>
+nmap <Leader>t 0"ayt:f:l"byt::e <C-R>a<CR>:<C-R>b<CR>zz
+nmap <Leader>T 0"ayt:f:l"byt::tabnew <C-R>a<CR>:<C-R>b<CR>zz
 " select word under cursor from grep result line
 "nmap <Leader>w "wyiw0"ayt:f:l"byt::tabnew <C-R>a<CR>:<C-R>b<CR>/<C-R>w<CR>zz
-nmap <Leader>w "wyiw0"ayt:f:l"byt::tabnew <C-R>a<CR>:<C-R>b<CR>/<C-R>w<CR>:noh<CR>viwzz
+nmap <Leader>w "wyiw0"ayt:f:l"byt::tabnew <C-R>a<CR>:<C-R>b<CR>0/<C-R>w<CR>:noh<CR>viwzz
 
 "| # Snippets
 
@@ -129,4 +147,8 @@ autocmd FileType java inoremap ;sout System.out.println();<Return><++><Esc>k$hi
 autocmd FileType java inoremap ;main public static void main(String args[]){<Esc> <Backspace><Return>}<Esc>kA
 
 autocmd FileType markdown inoremap ;p <Esc>:read !~/.scripts/pasteImage<Return>kddI![](<Esc>A)
+
+autocmd FileType c ClangFormatAutoEnable
+autocmd FileType cpp ClangFormatAutoEnable
+autocmd FileType h ClangFormatAutoEnable
 
