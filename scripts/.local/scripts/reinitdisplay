@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+
+xrandr --output DisplayPort-1 --above eDP --auto
+
