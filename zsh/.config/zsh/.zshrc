@@ -5,6 +5,12 @@ export KEYTIMEOUT=1
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/scripts
 
+export GOBIN=$HOME/go/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOBIN
+
+export PATH=$PATH:$HOME/.platformio/penv/bin
+
 export EDITOR=nvim
 
 # check if aliasrc exists and source it

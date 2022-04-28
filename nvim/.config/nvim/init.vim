@@ -94,6 +94,8 @@ vnoremap ?? y?\V<C-R>=escape(@",'/\')<CR><CR>
 inoremap <S-Tab> <C-V><Tab>
 nmap <C-n> :NERDTreeToggle<CR>
 
+nmap <C-space> :CocDiagnostics<CR>
+
 augroup numbertoggle
     autocmd!
     autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -107,7 +109,7 @@ augroup END
     map <C-l> <C-w>l
 
 "| **Jump to next `=`:** `<Space><Space>`
-inoremap <Space><Space> <Esc>/<++><Enter>"_c4l
+"inoremap <Space><Space> <Esc>/<++><Enter>"_c4l
 inoremap ;e "{}"<Esc>hi
 " autocmd FileType markdown inoremap * **<Esc>i
  autocmd FileType markdown inoremap ** ****<Esc>hi

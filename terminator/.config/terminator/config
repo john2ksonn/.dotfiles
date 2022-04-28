@@ -1,4 +1,7 @@
 [global_config]
+  title_transmit_bg_color = "#3f3f3f"
+  title_inactive_fg_color = "#c0bebf"
+  title_inactive_bg_color = "#000000"
   inactive_color_offset = 0.9
   title_font = Sans 21
   case_sensitive = False
@@ -31,6 +34,10 @@
     background_color = "#ffffff"
     cursor_color = "#aaaaaa"
     foreground_color = "#000000"
+  [[Comic Sans]]
+    cursor_color = "#aaaaaa"
+    font = TSCu_Comic 10
+    use_system_font = False
 [layouts]
   [[default]]
     [[[window0]]]
