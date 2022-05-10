@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#mpv_command="mpv --ytdl-raw-options=sub-lang=en,write-auto-sub= --fs --quiet --sub-blur=20 --sub-scale=0.5 --sub-back-color=.2/.2/.2/.5"
 mpv_command="setsid -f mpv --ytdl-raw-options=sub-lang=en,write-auto-sub= --quiet --sub-blur=20 --sub-scale=0.5 --sub-back-color=.2/.2/.2/.5"
 
 [ -z "$1" ] && { "$BROWSER"; exit; }
@@ -8,11 +7,11 @@ mpv_command="setsid -f mpv --ytdl-raw-options=sub-lang=en,write-auto-sub= --quie
 case "$1" in
     *mkv|*webm|*mp4|*youtube.com/watch*|*youtube.com/playlist*|*youtu.be*|*hooktube.com*|*bitchute.com*|*videos.lukesmith.xyz*|*odysee.com*)
         playerctl pause
-        setsid -f `$mpv_command` -quiet "$1" >/dev/null 2>&1 ;;
+        $mpv_command "$1" >/dev/null 2>&1 ;;
     *rumble.com/v*)
         playerctl pause
         url=`curl -s $1 | grep -o "https://[^\"]*embed[^\"]*"`
-        setsid -f `$mpv_command` -quiet "$1" >/dev/null 2>&1 ;;
+        $mpv_command "$1" >/dev/null 2>&1 ;;
     *soundcloud.com*|*mp3|*flac|*opus)
         playerctl pause
         terminator -e "$mpv_command $1" > /dev/null & ;;
