@@ -25,4 +25,5 @@ return require('packer').startup(function(use)
         'vim-pandoc/vim-pandoc-syntax',
         ft = {'markdown'}
     }
+    use 'lervag/vimtex'
 end)
