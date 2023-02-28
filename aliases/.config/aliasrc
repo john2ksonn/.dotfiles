@@ -27,21 +27,6 @@ alias \
     la="ls -A"
 
 # Folders
-
-if uname -r | grep Microsoft > /dev/null
-then
-    alias \
-        win="winopen" \
-        cdc="cd /mnt/c" \
-        cdrive="cd /mnt/c/Users/Johannes/GoogleDrive" \
-        cdoc="cd /mnt/c/Users/Johannes/Documents" \
-        cdnotes="cd /mnt/c/Users/Johannes/SyncNotes" \
-        cds="cd /mnt/c/Users/Johannes/GoogleDrive/KnowledgeBase/THU/Informatik/Semester5"
-fi
-
-sessiontype=`loginctl show-session $(awk '/tty/ {print $1}' <(loginctl)) -p Type | awk -F= '{print $2}'`
-
-if [ "$sessiontype" = 'wayland' ]; then
-	alias dmenu="wofi --show=dmenu"
-fi
+alias \
+    cdd="cd $HOME/.dotfiles" 
 
