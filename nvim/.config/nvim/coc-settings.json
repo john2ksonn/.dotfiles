@@ -1,0 +1,20 @@
+{
+    "ltex.completionEnabled": true,
+    "ltex.enabled": [
+        "bibtex",
+        "latex",
+        "vimwiki",
+        "markdown"
+    ],
+    "ltex.dictionary": {
+        "en-US": [
+            "CODE WHITE"
+        ],
+        "de-DE": [
+            "CODE WHITE"
+        ]
+    },
+    "ltex.language": "de-DE",
+    "ltex.additionalRules.motherTongue": "de-DE",
+    "ltex.checkFrequency": "save"
+}

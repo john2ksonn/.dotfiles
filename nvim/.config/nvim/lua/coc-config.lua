@@ -4,6 +4,8 @@ vim.opt.signcolumn = "yes"
 
 vim.cmd("let g:coc_global_extensions = ['coc-snippets', 'coc-pairs', 'coc-json', 'coc-ltex']")
 
+local lol = vim.coc
+
 local keyset = vim.keymap.set
 -- Autocomplete
 function _G.check_back_space()
@@ -26,7 +28,7 @@ keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
 keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", {silent = true})
 keyset("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
-
+ 
 -- GoTo code navigation
 keyset("n", "gd", "<Plug>(coc-definition)", {silent = true})
 keyset("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
